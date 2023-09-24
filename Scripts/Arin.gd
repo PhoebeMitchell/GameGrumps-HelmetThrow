@@ -1,6 +1,5 @@
 extends AnimatedSprite2D
 
-var main_scene = preload("res://Scenes/main.tscn")
 var text_box : TextBox = preload("res://Prefabs/dialogue_text_box.tscn").instantiate()
 
 # Called when the node enters the scene tree for the first time.
@@ -21,4 +20,4 @@ func _on_thud_timer_timeout():
 func _input(event):
 	if Input.is_action_just_pressed("Left Mouse Button"):
 		Music.start()
-		get_tree().change_scene_to_packed(main_scene)
+		get_tree().change_scene_to_file("res://Scenes/main.tscn")
