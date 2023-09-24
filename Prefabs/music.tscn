@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://x3axq1yuxq5d"]
+
+[ext_resource type="AudioStream" uid="uid://cxc50ta86plru" path="res://Sounds/ABoyAndHisTrial.mp3" id="1_hwhgk"]
+[ext_resource type="Script" path="res://Scenes/Music.gd" id="1_ydnd7"]
+[ext_resource type="AudioStream" uid="uid://pd5pg6mk6yl" path="res://Sounds/InvestigationJoonyer.mp3" id="3_rnqo4"]
+
+[node name="Music" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_hwhgk")
+script = ExtResource("1_ydnd7")
+music = Array[AudioStream]([ExtResource("1_hwhgk"), ExtResource("3_rnqo4")])

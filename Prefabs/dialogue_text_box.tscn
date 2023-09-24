@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnbfypcewjc2b"]
+
+[ext_resource type="Texture2D" uid="uid://qemfuruq4l6m" path="res://Sprites/DialogueTextBox.png" id="1_pxppr"]
+[ext_resource type="Script" path="res://Scripts/TextBox.gd" id="2_uoji7"]
+[ext_resource type="FontFile" uid="uid://6w0pmfeme0ff" path="res://Fonts/Igiari.ttf" id="3_0ktur"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jyd6m"]
+line_spacing = -3.0
+font = ExtResource("3_0ktur")
+
+[node name="DialogueTextBox" type="Sprite2D"]
+texture_filter = 1
+position = Vector2(0, 90)
+texture = ExtResource("1_pxppr")
+offset = Vector2(0, -32)
+script = ExtResource("2_uoji7")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -154.0
+offset_top = -60.0
+offset_right = 155.0
+offset_bottom = -6.0
+text = "test test test test test test test test test test test test test test test test test test "
+label_settings = SubResource("LabelSettings_jyd6m")
+autowrap_mode = 2

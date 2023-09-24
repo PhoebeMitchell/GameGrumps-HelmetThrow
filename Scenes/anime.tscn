@@ -1,0 +1,118 @@
+[gd_scene load_steps=13 format=3 uid="uid://c5cvt4rnhtomm"]
+
+[ext_resource type="Script" path="res://Scripts/AnimeAnimationPlayer.gd" id="1_3fokf"]
+[ext_resource type="Texture2D" uid="uid://cwtcm2qrwu000" path="res://Sprites/Anime.png" id="1_5r1ss"]
+[ext_resource type="Texture2D" uid="uid://dmsoi0kcwnv4n" path="res://Sprites/Helmet.png" id="3_s88br"]
+[ext_resource type="Script" path="res://Scripts/HelmetAnimationPlayer.gd" id="4_ctnne"]
+[ext_resource type="Script" path="res://Scripts/HelmetWobbleAnimationPlayer.gd" id="5_b1unh"]
+[ext_resource type="Script" path="res://Scripts/AnimeTimer.gd" id="6_bg7a4"]
+
+[sub_resource type="Animation" id="Animation_bfxf8"]
+resource_name = "anime"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anime:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(320, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hyy7e"]
+_data = {
+"anime": SubResource("Animation_bfxf8")
+}
+
+[sub_resource type="Animation" id="Animation_6htvj"]
+resource_name = "helmet"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(200, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lu5mm"]
+_data = {
+"helmet": SubResource("Animation_6htvj")
+}
+
+[sub_resource type="Animation" id="Animation_8tqv6"]
+resource_name = "helmet_wobble"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.0349066, 0.0349066, -0.0349066]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_esf7r"]
+_data = {
+"helmet_wobble": SubResource("Animation_8tqv6")
+}
+
+[node name="anime" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3.6, 3.6)
+
+[node name="Anime" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_5r1ss")
+
+[node name="Sprite2D" type="Sprite2D" parent="Anime"]
+texture_filter = 1
+position = Vector2(-320, 0)
+texture = ExtResource("1_5r1ss")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Anime"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_hyy7e")
+}
+script = ExtResource("1_3fokf")
+
+[node name="Helmet" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(200, 0)
+rotation = -0.0349066
+texture = ExtResource("3_s88br")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Helmet"]
+libraries = {
+"": SubResource("AnimationLibrary_lu5mm")
+}
+script = ExtResource("4_ctnne")
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Helmet"]
+libraries = {
+"": SubResource("AnimationLibrary_esf7r")
+}
+script = ExtResource("5_b1unh")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+script = ExtResource("6_bg7a4")
+
+[connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]

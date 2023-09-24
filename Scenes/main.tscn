@@ -1,0 +1,132 @@
+[gd_scene load_steps=20 format=3 uid="uid://c00xbqy87j4q8"]
+
+[ext_resource type="Texture2D" uid="uid://i0hxfdxcirnl" path="res://Sprites/CourtWitness1.png" id="1_w4pyx"]
+[ext_resource type="Texture2D" uid="uid://c5wtdkp71dokr" path="res://Sprites/CourtWitness2.png" id="2_b0c6g"]
+[ext_resource type="Texture2D" uid="uid://dcbodh6vurjis" path="res://Sprites/HelmetThrow.png" id="3_105pd"]
+[ext_resource type="Script" path="res://Scripts/Ross.gd" id="4_o804e"]
+[ext_resource type="AudioStream" uid="uid://ct51pj83gxhae" path="res://Sounds/StarlightObjection.mp3" id="5_fjrco"]
+[ext_resource type="AudioStream" uid="uid://3ioncoxnk56f" path="res://Sounds/sfx-swing.wav" id="5_wkm7v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vn4it"]
+atlas = ExtResource("3_105pd")
+region = Rect2(0, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5d3p"]
+atlas = ExtResource("3_105pd")
+region = Rect2(320, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ao4j8"]
+atlas = ExtResource("3_105pd")
+region = Rect2(640, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7w7a"]
+atlas = ExtResource("3_105pd")
+region = Rect2(960, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxqrw"]
+atlas = ExtResource("3_105pd")
+region = Rect2(1280, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_253a7"]
+atlas = ExtResource("3_105pd")
+region = Rect2(1600, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdy0n"]
+atlas = ExtResource("3_105pd")
+region = Rect2(1920, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4op8"]
+atlas = ExtResource("3_105pd")
+region = Rect2(2240, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60322"]
+atlas = ExtResource("3_105pd")
+region = Rect2(2560, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1lg5"]
+atlas = ExtResource("3_105pd")
+region = Rect2(2880, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qwfk"]
+atlas = ExtResource("3_105pd")
+region = Rect2(3200, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2n5yk"]
+atlas = ExtResource("3_105pd")
+region = Rect2(3520, 0, 320, 180)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dysud"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vn4it")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5d3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ao4j8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7w7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxqrw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_253a7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cdy0n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4op8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60322")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1lg5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qwfk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2n5yk")
+}],
+"loop": false,
+"name": &"throw",
+"speed": 30.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3.6, 3.6)
+
+[node name="CourtWitness1" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_w4pyx")
+
+[node name="CourtWitness2" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_b0c6g")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_dysud")
+script = ExtResource("4_o804e")
+super_music = ExtResource("5_fjrco")
+
+[node name="Timer" type="Timer" parent="AnimatedSprite2D"]
+wait_time = 0.5
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimatedSprite2D"]
+stream = ExtResource("5_wkm7v")
+
+[connection signal="timeout" from="AnimatedSprite2D/Timer" to="AnimatedSprite2D" method="_on_timer_timeout"]
