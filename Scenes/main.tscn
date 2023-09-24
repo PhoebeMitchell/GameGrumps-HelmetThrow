@@ -113,10 +113,6 @@ zoom = Vector2(3.6, 3.6)
 texture_filter = 1
 texture = ExtResource("1_w4pyx")
 
-[node name="CourtWitness2" type="Sprite2D" parent="."]
-texture_filter = 1
-texture = ExtResource("2_b0c6g")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_dysud")
@@ -128,5 +124,9 @@ wait_time = 0.5
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimatedSprite2D"]
 stream = ExtResource("5_wkm7v")
+
+[node name="CourtWitness2" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_b0c6g")
 
 [connection signal="timeout" from="AnimatedSprite2D/Timer" to="AnimatedSprite2D" method="_on_timer_timeout"]

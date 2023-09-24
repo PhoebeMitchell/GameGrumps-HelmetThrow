@@ -13,6 +13,8 @@ config_version=5
 config/name="HelmetThrow"
 run/main_scene="res://Scenes/main.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
+boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [autoload]
